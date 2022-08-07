@@ -1,4 +1,5 @@
 ﻿using P_Core.Models.Entities;
+using P_Core.Models.Models;
 
 namespace Core.Models.Entities
 {
@@ -16,5 +17,6 @@ namespace Core.Models.Entities
         public abstract bool PhoneConfirm { get; set; }
         public abstract ICollection<UserTypeAbstract> UserTypes { get; set; }
 
+        
     }
 }

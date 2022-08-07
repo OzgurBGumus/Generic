@@ -5,6 +5,7 @@ using Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using P_Core;
 using P_Core.Interfaces.Data;
 using P_StartupV0001;
 using P_StartupV0001.Helpers;
@@ -21,7 +22,7 @@ namespace StartupV0001.Configuration
             //services.AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
             //services.AddScoped<IBasketService, BasketService>();
             //services.AddSingleton<IUriComposer>(new UriComposer(configuration.Get<CatalogSettings>()));
-            services.AddDbContext<P_StartupV0001.DataContext>(options =>
+            services.AddDbContext<DataContext>(options =>
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });

@@ -6,10 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace User.Models
+namespace P_User.Models
 {
     public class User : UserAbstract
     {
+        public User()
+        {
+
+        }
         public User(string userName, string password)
         {
             UserName = userName;
@@ -34,5 +38,7 @@ namespace User.Models
             var LogString = "["+currentTime+"]  "+userString+"]";
             return LogString;
         }
+
+
     }
 }

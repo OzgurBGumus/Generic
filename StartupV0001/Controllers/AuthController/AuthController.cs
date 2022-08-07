@@ -49,6 +49,16 @@ namespace P_StartupV0001.Controllers
             return Ok(userDto);
         }
 
+        [AllowAnonymous]
+        [HttpPost("register")]
+        public async Task<IActionResult> Register()
+        {
+            var userModel = await Request.ReadFromJsonAsync<StartupV0001.Models.User>();
+            var response = _userService.CreateUser(userModel);
+
+            return Ok(response);
+        }
+
         [HttpGet("user")]
         public async Task<IActionResult> User()
         {

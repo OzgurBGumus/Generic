@@ -8,5 +8,6 @@ namespace Core.Interfaces.User
         UserAbstract? GetUser(int? id);
         UserAbstract? GetUserWithUserNameAndPassword(UserAbstract userModel);
         ICollection<UserAbstract> GetUsersWithUserType(UserTypeAbstract userTypeModel);
+        UserAbstract? CreateUser(UserAbstract userModel);
     }
 }
