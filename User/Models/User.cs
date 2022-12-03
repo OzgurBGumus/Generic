@@ -27,14 +27,16 @@ namespace P_User.Models
         public override string LastName { get; set; }
         public override string Email { get; set; }
         public override string PhoneNumber { get; set; }
+        public override string PasswordResetToken { get; set; }
         public override bool EmailConfirm { get; set; }
         public override bool PhoneConfirm { get; set; }
-        public override ICollection<UserTypeAbstract> UserTypes { get; set; }
+        public override int Status { get; set; }
+        public override IEnumerable<UserTypeAbstract> UserTypes { get; set; }
 
         public override string toLogString()
         {
             var currentTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
-            var userString = "User: [Id:" + Id + ", UserName:" + UserName + ", FullName:" + FirstName + " " + LastName + ", Email:" + Email + ", PhoneNumber:" + PhoneNumber + "]";
+            var userString = "User: [Id:" + Id + "]";
             var LogString = "["+currentTime+"]  "+userString+"]";
             return LogString;
         }

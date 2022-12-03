@@ -13,9 +13,12 @@ namespace Core.Models.Entities
         public abstract string LastName { get; set; }
         public abstract string Email { get; set; }
         public abstract string PhoneNumber { get; set; }
+        public abstract string PasswordResetToken { get; set; }
+
         public abstract bool EmailConfirm { get; set; }
         public abstract bool PhoneConfirm { get; set; }
-        public abstract ICollection<UserTypeAbstract> UserTypes { get; set; }
+        public abstract int Status { get; set; }
+        public abstract IEnumerable<UserTypeAbstract> UserTypes { get; set; }
 
         
     }

@@ -11,6 +11,7 @@ namespace P_Core.Models.Models
     public class User
     {
         public  int Id { get; set; }
+        public  int Status { get; set; }
         public  string UserName { get; set; }
         public  string Password { get; set; }
         public  string? JwtToken { get; set; }
@@ -18,9 +19,10 @@ namespace P_Core.Models.Models
         public  string? LastName { get; set; }
         public  string? Email { get; set; }
         public  string? PhoneNumber { get; set; }
+        public string? PasswordResetToken { get; set; }
         public  bool EmailConfirm { get; set; }
         public  bool PhoneConfirm { get; set; }
-        public  ICollection<UserType> UserTypes { get; set; }
+        public  virtual List<UserType>? UserTypes { get; set; }
         public  OGDate? BirthDate { get; set; }
         public  OGDate? CreateDate { get; set; }
         

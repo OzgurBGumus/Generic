@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using P_Core;
 
@@ -11,9 +12,10 @@ using P_Core;
 namespace P_Core.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221130032030_AddedResetPasswordToken")]
+    partial class AddedResetPasswordToken
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,38 +23,6 @@ namespace P_Core.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
-
-            modelBuilder.Entity("P_Core.Models.Models.GeneralLog", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Destination")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Object")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GeneralLog");
-                });
 
             modelBuilder.Entity("P_Core.Models.Models.OGDate", b =>
                 {
@@ -234,15 +204,15 @@ namespace P_Core.Migrations
 
             modelBuilder.Entity("UserUserType", b =>
                 {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("UserTypesId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UsersId")
-                        .HasColumnType("int");
+                    b.HasKey("UserId", "UserTypesId");
 
-                    b.HasKey("UserTypesId", "UsersId");
-
-                    b.HasIndex("UsersId");
+                    b.HasIndex("UserTypesId");
 
                     b.ToTable("UserUserType");
                 });
@@ -290,15 +260,15 @@ namespace P_Core.Migrations
 
             modelBuilder.Entity("UserUserType", b =>
                 {
-                    b.HasOne("P_Core.Models.Models.UserType", null)
+                    b.HasOne("P_Core.Models.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("UserTypesId")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("P_Core.Models.Models.User", null)
+                    b.HasOne("P_Core.Models.Models.UserType", null)
                         .WithMany()
-                        .HasForeignKey("UsersId")
+                        .HasForeignKey("UserTypesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

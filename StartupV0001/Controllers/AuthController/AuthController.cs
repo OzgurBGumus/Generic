@@ -1,7 +1,6 @@
 ﻿using Core.Interfaces.Authentication;
 using Core.Interfaces.User;
 using Core.Models.Entities;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using P_StartupV0001.Configuration;
@@ -10,7 +9,7 @@ using P_StartupV0001.Helpers.User;
 
 namespace P_StartupV0001.Controllers
 {
-    [Helpers.Authorize]
+    
     [ApiController]
     [Route("[controller]")]
     public class AuthController : BaseController
@@ -31,7 +30,6 @@ namespace P_StartupV0001.Controllers
             
         }
 
-        [AllowAnonymous]
         [HttpPost("login")]
         public async Task<IActionResult> Login()
         {
@@ -49,7 +47,6 @@ namespace P_StartupV0001.Controllers
             return Ok(userDto);
         }
 
-        [AllowAnonymous]
         [HttpPost("register")]
         public async Task<IActionResult> Register()
         {
@@ -59,10 +56,27 @@ namespace P_StartupV0001.Controllers
             return Ok(response);
         }
 
+        [Authorize(UserTypes = "user")]
         [HttpGet("user")]
         public async Task<IActionResult> User()
         {
             return Ok(base.CurrentUser());
+        }
+
+        [HttpPost("resetPasswordRequest")]
+        public async Task<IActionResult> ResetPasswordRequest()
+        {
+            var userModel = await Request.ReadFromJsonAsync<StartupV0001.Models.User>();
+            var response = _userService.ResetPasswordRequest(userModel.Email);
+            return Ok(response);
+        }
+
+        [HttpPost("resetPassword")]
+        public async Task<IActionResult> ResetPassword()
+        {
+            var userModel = await Request.ReadFromJsonAsync<StartupV0001.Models.User>();
+            var response = _userService.ResetPassword(userModel.PasswordResetToken, userModel.UserName, userModel.Password);
+            return Ok(response);
         }
     }
 }

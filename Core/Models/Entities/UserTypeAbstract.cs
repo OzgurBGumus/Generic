@@ -11,5 +11,6 @@ namespace P_Core.Models.Entities
         public abstract string Key { get; set; }
         public abstract string Description { get; set; }
         public abstract ICollection<PermissionAbstract> Permissions { get; set; }
+        public abstract ICollection<UserTypeAbstract> Users { get; set; }
     }
 }

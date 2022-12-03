@@ -45,10 +45,9 @@ namespace Authentication
                 // return user id from JWT token if validation successful
                 return userId;
             }
-            catch
+            catch (Exception ex)
             {
-                // return null if validation fails
-                return null;
+                throw ex;
             }
         }
 
@@ -76,11 +75,9 @@ namespace Authentication
                 // attach user to context on successful jwt validation
                 
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
-                // do nothing if jwt validation fails
-                // user is not attached to context so request won't have access to secure routes
+                throw ex;
             }
         }
     }

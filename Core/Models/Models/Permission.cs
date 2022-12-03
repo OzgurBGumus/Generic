@@ -13,11 +13,14 @@ namespace P_Core.Models.Models
         public virtual string Description { get; set; }
         public virtual Status Status { get; set; }
         public virtual int Id { get; set; }
-        public virtual ICollection<UserType> UserTypes { get; set; }
+        public virtual IEnumerable<UserType> UserTypes { get; set; }
 
         public virtual string toLogString()
         {
-            throw new NotImplementedException();
+            var currentTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
+            var permissionString = "Permission: [Key:" + Key + "]";
+            var LogString = "[" + currentTime + "]  " + permissionString + "]";
+            return LogString;
         }
     }
 }

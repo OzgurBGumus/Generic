@@ -12,5 +12,7 @@ namespace P_Core.Models.Entities
         public abstract string Key { get; set; }
         public abstract string Description { get; set; }
         public abstract Status Status { get; set; }
+        public abstract ICollection<UserTypeAbstract> UserTypes { get; set; }
+
     }
 }

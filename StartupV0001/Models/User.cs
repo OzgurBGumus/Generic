@@ -11,6 +11,7 @@ namespace StartupV0001.Models
             Password = password;
         }
         public override int Id { get; set; }
+        public override int Status { get; set; }
         public override string UserName { get; set; }
         public override string Password { get; set; }
         public override string JwtToken { get; set; }
@@ -18,9 +19,10 @@ namespace StartupV0001.Models
         public override string LastName { get; set; }
         public override string Email { get; set; }
         public override string PhoneNumber { get; set; }
+        public override string PasswordResetToken { get; set; }
         public override bool EmailConfirm { get; set; }
         public override bool PhoneConfirm { get; set; }
-        public override ICollection<UserTypeAbstract> UserTypes { get; set; }
+        public override IEnumerable<UserTypeAbstract> UserTypes { get; set; }
         public override string toLogString()
         {
             var currentTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss");
